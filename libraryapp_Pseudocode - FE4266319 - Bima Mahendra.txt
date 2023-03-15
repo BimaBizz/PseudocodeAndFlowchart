@@ -1,0 +1,40 @@
+PROGRAM LibraryApp
+
+DECLARE bukuTersedia as number
+DECLARE bukuTerpinjam as number
+SET bukuTersedia = 100
+SET bukuTerpinjam = 0
+
+WHILE true DO
+    READ AND WRITE "opsiMenu" with string value
+    IF "opsiMenu" equals "peminjamanBuku" THEN
+        READ AND WRITE "judulBuku" with string value
+        IF bukuTersedia equals 0 THEN
+            PRINT "Semua buku telah terpinjam"
+	    RETURN "opsiMenu" equals "peminjamanBuku"
+        ELSE
+            SET bukuTersedia = bukuTersedia - 1
+            SET bukuTerpinjam = bukuTerpinjam + 1
+            PRINT "Buku " + "judulBuku" + " telah terpinjam"
+        END IF
+    ELSE IF "opsiMenu" equals "pengembalianBuku" THEN
+        READ AND WRITE "judulBuku" with string value
+        IF bukuTerpinjam equals 0 THEN
+            PRINT "Buku ini belum pernah dipinjam"
+	    SET bukuTersedia = bukuTersedia + 1
+            SET bukuTerpinjam = bukuTerpinjam - 1
+            PRINT "Buku " + "judulBuku" + " telah dikembalikan"
+        ELSE IF judulBuku does not exist in bukuTerpinjam THEN
+            PRINT "Buku ini belum tersedia di perpustakaan"
+	    RETURN "opsiMenu" equals "pengembalianBuku"
+	ELSE
+	    SET bukuTersedia = bukuTersedia + 1
+            SET bukuTerpinjam = bukuTerpinjam - 1
+            PRINT "Buku " + "judulBuku" + " telah dikembalikan"
+        END IF
+    ELSE IF "opsiMenu" equals "keluar" THEN
+        BREAK
+    END IF
+END WHILE
+
+END PROGRAM
