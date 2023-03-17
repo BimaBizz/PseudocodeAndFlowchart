@@ -11,7 +11,7 @@ WHILE true DO
         READ AND WRITE "judulBuku" with string value
         IF bukuTersedia equals 0 THEN
             PRINT "Semua buku telah terpinjam"
-	    RETURN "opsiMenu" equals "peminjamanBuku"
+	    BREAK
         ELSE
             SET bukuTersedia = bukuTersedia - 1
             SET bukuTerpinjam = bukuTerpinjam + 1
@@ -26,7 +26,7 @@ WHILE true DO
             PRINT "Buku " + "judulBuku" + " telah dikembalikan"
         ELSE IF judulBuku does not exist in bukuTerpinjam THEN
             PRINT "Buku ini belum tersedia di perpustakaan"
-	    RETURN "opsiMenu" equals "pengembalianBuku"
+	    BREAK
 	ELSE
 	    SET bukuTersedia = bukuTersedia + 1
             SET bukuTerpinjam = bukuTerpinjam - 1
